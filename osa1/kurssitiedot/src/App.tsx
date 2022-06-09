@@ -1,8 +1,11 @@
-const Header = (course) => {
+const Header: React.FC<{ course: string }> = ({ course }) => {
   return <h1>{course}</h1>;
 };
 
-const Part = (partName, exerciseAmount) => {
+const Part: React.FC<{ partName: string; exerciseAmount: number }> = ({
+  partName,
+  exerciseAmount,
+}) => {
   return (
     <p>
       {partName} {exerciseAmount}
@@ -10,7 +13,14 @@ const Part = (partName, exerciseAmount) => {
   );
 };
 
-const Content = (p1, e1, p2, e2, p3, e3) => {
+const Content: React.FC<{
+  p1: string;
+  e1: number;
+  p2: string;
+  e2: number;
+  p3: string;
+  e3: number;
+}> = ({ p1, e1, p2, e2, p3, e3 }) => {
   return (
     <div>
       <Part partName={p1} exerciseAmount={e1} />
@@ -20,8 +30,8 @@ const Content = (p1, e1, p2, e2, p3, e3) => {
   );
 };
 
-const Total = (amount) => {
-  <p>Number of exercises {amount}</p>;
+const Total: React.FC<{ amount: number }> = ({ amount }) => {
+  return <p>Number of exercises {amount}</p>;
 };
 
 const App = () => {
