@@ -14,47 +14,48 @@ const Part: React.FC<{ partName: string; exerciseAmount: number }> = ({
 };
 
 const Content: React.FC<{
-  p1: string;
-  e1: number;
-  p2: string;
-  e2: number;
-  p3: string;
-  e3: number;
-}> = ({ p1, e1, p2, e2, p3, e3 }) => {
+  parts: { name: string; exercises: number }[];
+}> = ({ parts }) => {
   return (
     <div>
-      <Part partName={p1} exerciseAmount={e1} />
-      <Part partName={p2} exerciseAmount={e2} />
-      <Part partName={p3} exerciseAmount={e3} />
+      {parts.map((part) => (
+        <Part partName={part.name} exerciseAmount={part.exercises} />
+      ))}
     </div>
   );
 };
 
-const Total: React.FC<{ amount: number }> = ({ amount }) => {
+const Total: React.FC<{
+  parts: { name: string; exercises: number }[];
+}> = ({ parts }) => {
+  const amount: number = parts.reduce((a,b) => a + b.exercises, 0)
   return <p>Number of exercises {amount}</p>;
 };
 
 const App = () => {
   const course = "Half Stack application development";
-  const part1 = "Fundamentals of React";
-  const exercises1 = 10;
-  const part2 = "Using props to pass data";
-  const exercises2 = 7;
-  const part3 = "State of a component";
-  const exercises3 = 14;
+  const parts = [
+    {
+      name: "Fundamentals of React",
+      exercises: 10,
+    },
+    {
+      name: "Using props to pass data",
+      exercises: 7,
+    },
+    {
+      name: "State of a component",
+      exercises: 14,
+    },
+  ];
 
   return (
     <div>
       <Header course={course} />
       <Content
-        p1={part1}
-        p2={part2}
-        p3={part3}
-        e1={exercises1}
-        e2={exercises2}
-        e3={exercises3}
+        parts={parts}
       />
-      <Total amount={exercises1 + exercises2 + exercises3} />
+      <Total parts={parts} />
     </div>
   );
 };
