@@ -140,6 +140,7 @@ const App = () => {
           personService
             .update(person.id, { ...person, number: newNumber })
             .catch((error) => {
+              console.log(error);
               setMessage({
                 error: true,
                 message: `Information of ${person.name} has already been removed from server`,
@@ -162,6 +163,17 @@ const App = () => {
               setTimeout(() => {
                 setMessage({ message: null, error: false });
               }, 3000);
+              setNewName("");
+              setNewNumber("");
+            })
+            .catch((error) => {
+              setMessage({
+                error: true,
+                message: error.response.data.error,
+              });
+              setTimeout(() => {
+                setMessage({ message: null, error: false });
+              }, 3000);
             });
       }
     } else {
@@ -172,6 +184,15 @@ const App = () => {
           setNewName("");
           setNewNumber("");
           setMessage({ error: false, message: `${newPerson.name} added` });
+          setTimeout(() => {
+            setMessage({ message: null, error: false });
+          }, 3000);
+        })
+        .catch((error) => {
+          setMessage({
+            error: true,
+            message: error.response.data.error,
+          });
           setTimeout(() => {
             setMessage({ message: null, error: false });
           }, 3000);
