@@ -1,0 +1,10 @@
+post http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpyYW50YWxhIiwiaWQiOiI2MmIxZTMzNGNhMmMwNWRhYzQyOTFmODgiLCJpYXQiOjE2NTU4OTMwNDcsImV4cCI6MTY1NTg5NjY0N30.ftlK15fZwVD2vPmvU6qZ7t-1Xi56EMxzXSHQ5MPms4A
+
+{
+     "title": "Venla ",
+     "author": "Johannes R",
+     "url": "www.j.fi"
+ }
+
